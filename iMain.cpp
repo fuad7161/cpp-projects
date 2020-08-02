@@ -1,0 +1,109 @@
+/*
+Author: Fuadul Hasan(fuadul202@gmail.com)
+BSMRSTU,Gopalganj
+*/
+#include <iostream>
+# include "iGraphics.h"
+using namespace std;
+
+#define screenwidth 1000
+#define screenhight 600
+
+int mposx,  mposy;
+
+int x = 0;
+int y = 0;
+int dx = 2;
+int dy = 2;
+
+int r = 255;
+int g = 255;
+int b = 255;
+
+void iDraw()
+{
+	iClear();
+	iSetColor(r, g, b);
+	iFilledCircle(x, y, 50, 1000);
+
+}
+
+void iMouseMove(int mx, int my)
+{
+	//place your codes here
+}
+int t = 0;
+void iMouse(int button, int state, int mx, int my)
+{
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		//place your codes here
+	}
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+	{
+		//place your codes here
+	}
+}
+
+void iPassiveMouseMove(int mx,int my)
+{
+	//place your code here
+
+	 mposx = mx;
+	 mposy = my;
+	 if(mx== 2){}        /*Something to do with mx*/
+	 else if(my== 2){}   /*Something to do with my*/
+
+}
+
+void iKeyboard(unsigned char key)
+{
+	
+}
+
+void iSpecialKeyboard(unsigned char key)
+{
+	if(key == GLUT_KEY_UP){
+		y += 10;
+	}
+	else if (key == GLUT_KEY_DOWN){
+		y -= 10;
+	}
+	else if (key == GLUT_KEY_LEFT){
+		x -= 10;
+	}
+	else if (key == GLUT_KEY_RIGHT){
+		x += 10;
+	}
+}
+
+void colorChange(){
+	r = rand() % 255;
+	g = rand() % 255;
+	b = rand() % 255;
+}
+
+void change()
+{
+	x += dx;
+	y += dy;
+
+	if (x >= screenwidth || x <= 0){
+		dx *= (-1);
+		colorChange();
+	}
+	if (y >= screenhight || y <= 0){
+		dy *= (-1);
+		colorChange();
+	}
+}
+
+//
+int main()
+{
+	//place your own initialization codes here.
+	iSetTimer(1, change);
+	//iSetTimer(1000, colorChange);
+	iInitialize(screenwidth, screenhight, "youtube project");
+	return 0;
+}
